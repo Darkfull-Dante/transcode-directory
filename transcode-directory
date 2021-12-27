@@ -13,7 +13,8 @@ while IFS= read -r -d '' file
 do
   
     # transcode the file
-    ffmpeg -hide_banner -nostdin -i "$file" -vcodec h264_nvenc -acodec copy -crf 28 "${file%.ts}.mp4" && \
+    (ffmpeg -hide_banner -nostdin -i "$file" -vcodec h264_nvenc -acodec copy -crf 28 "${file%"$FILE_TYPE"}.mp4" || \
+    (rm "${file%"$FILE_TYPE"}.mp4" && ffmpeg -hide_banner -nostdin -i "$file" -vcodec h264 -acodec copy -crf 28 "${file%"$FILE_TYPE"}.mp4")) && \
     rm "$file"
 
 done <   <(find "$ROOT_DIR" -name "*$FILE_TYPE" -print0)
