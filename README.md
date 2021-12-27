@@ -9,7 +9,7 @@ To use this tool, git the project and then copy or create a symlonk into /usr/lo
 ```bash
 git https://github.com/Darkfull-Dante/transcode-directory.git
 cd transcode-directory
-ln -s transcode-directory /usr/local/bin/transcode-directory
+sudo ln -s transcode-directory /usr/local/bin/transcode-directory
 ```
 
 ## Usage
